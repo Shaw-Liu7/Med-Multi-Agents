@@ -7,12 +7,10 @@
 *A safety-oriented multi-agent prototype for medical information assistance.*
 
 ![Python](https://img.shields.io/badge/Python-3.10--3.12-3776AB?logo=python&logoColor=white)
-![Status](https://img.shields.io/badge/Status-Alpha-orange)
 ![LLM](https://img.shields.io/badge/LLM-OpenAI--compatible-412991)
-![Tests](https://img.shields.io/badge/Tests-Offline-brightgreen)
-![License](https://img.shields.io/badge/License-Pending-lightgrey)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-[核心能力](#核心能力) · [系统架构](#系统架构) · [快速开始](#快速开始) · [安全与隐私](#安全与隐私) · [项目路线图](#项目路线图)
+[核心能力](#核心能力) · [系统架构](#系统架构) · [快速开始](#快速开始) · [安全与隐私](#安全与隐私) · [项目路线图](#项目路线图) · [许可证](#许可证)
 
 </div>
 
@@ -412,9 +410,9 @@ python3 examples/test_all.py
 
 ## 许可证
 
-项目目前尚未提供正式 `LICENSE` 文件。在许可证确定之前，请不要假定本项目可被复制、修改、再分发或用于商业场景。
+除非文件中另有说明，本仓库源代码依据 [MIT License](LICENSE) 开源。你可以在保留版权声明和许可声明的前提下使用、复制、修改、合并、发布、分发、再授权或销售本项目的副本。
 
-代码许可证与医学资料许可证应分别确认；即使代码采用开源许可证，也不代表内置指南、文档或第三方内容自动获得相同授权。
+MIT License 仅适用于本项目拥有授权权利的代码和相关材料。内置医学资料、指南、文档、模型、数据集及其他第三方内容可能受各自许可证或使用条款约束，使用和再分发前请分别确认其授权范围。
 
 ---
 
