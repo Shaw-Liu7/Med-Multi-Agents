@@ -1,0 +1,71 @@
+# 环境变量和本地密钥配置
+.env
+.env.*
+!.env.example
+/config.py
+/.claude/settings.local.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 虚拟环境
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 日志
+*.log
+
+# 测试
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# 记忆、向量库和用户数据
+.medix/
+.mem0/
+.qdrant/
+qdrant_storage/
+tmp/qdrant/
+memory/swarm/session_summaries/
+memory/session_summaries/
+memory/agents/*.md
+session_summaries/
+agent_identities/
+knowledge/data/*.db
+knowledge/data/*.db-shm
+knowledge/data/*.db-wal
+*.sqlite
+*.sqlite3
+
+# 临时文件
+*.tmp
+*.bak

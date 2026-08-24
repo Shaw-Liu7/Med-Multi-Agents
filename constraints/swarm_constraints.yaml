@@ -1,0 +1,83 @@
+{
+  "schema_version": 2,
+  "swarm": {
+    "max_agents_per_task": 3,
+    "max_parallel_tasks": 5,
+    "timeout_seconds": 90,
+    "task_decomposition_rules": [
+      {
+        "name": "simple_query",
+        "keywords": ["单一症状", "常见疾病科普", "健康建议", "如何预防"],
+        "max_subtasks": 1,
+        "reason": "简单问题无需 Swarm"
+      },
+      {
+        "name": "lifestyle_advice",
+        "keywords": ["饮食", "运动", "睡眠", "生活习惯", "日常护理"],
+        "max_subtasks": 1,
+        "reason": "生活方式建议通常由一个 Agent 完成"
+      },
+      {
+        "name": "moderate_case",
+        "keywords": ["两个症状", "轻微既往史", "简单组合"],
+        "min_subtasks": 2,
+        "max_subtasks": 3,
+        "reason": "中等复杂度需要交叉验证"
+      },
+      {
+        "name": "complex_case",
+        "keywords": ["多个症状", "既往病史", "综合管理", "疑难症状", "多系统"],
+        "min_subtasks": 2,
+        "max_subtasks": 5,
+        "reason": "复杂案例需要多角度分析"
+      }
+    ],
+    "agent_selection_rules": [
+      {
+        "if_symptoms": [
+          "胸痛",
+          "呼吸困难",
+          "心悸",
+          "昏厥",
+          "剧烈头痛",
+          "突然视力模糊",
+          "口角歪斜",
+          "一侧肢体无力",
+          "大量出血",
+          "抽搐"
+        ],
+        "must_include": ["diagnostic_agent"],
+        "reason": "高危症状必须进行风险评估",
+        "priority": "critical"
+      },
+      {
+        "if_keywords": ["指南", "循证", "研究", "文献", "最新进展", "专家共识"],
+        "must_include": ["research_agent"],
+        "reason": "需要证据检索",
+        "priority": "high"
+      },
+      {
+        "if_keywords": ["饮食", "运动", "生活方式", "日常护理"],
+        "must_include": ["consultation_agent"],
+        "reason": "需要生活方式建议",
+        "priority": "medium"
+      }
+    ],
+    "quality_control": {
+      "min_contribution_length": 50,
+      "max_contribution_length": 1200,
+      "require_evidence": true,
+      "allow_disagreement": true
+    },
+    "conflict_resolution": {
+      "strategy": "lead_agent_decides",
+      "require_explanation": true,
+      "escalate_if_safety_concern": true
+    },
+    "collaboration_modes": [
+      {"mode": "parallel", "implemented": true, "use_when": "任务相互独立"},
+      {"mode": "sequential", "implemented": false, "use_when": "任务存在依赖"},
+      {"mode": "debate", "implemented": false, "use_when": "需要显式处理观点冲突"}
+    ]
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "schema_version": 2,
+  "agents": {
+    "consultation_agent": {
+      "aliases": ["ConsultationAgent", "consultation"],
+      "capabilities": ["general_health_advice", "risk_assessment", "symptom_triage"],
+      "allowed_tools": [
+        "search_knowledge",
+        "recommend_lifestyle",
+        "assess_risk",
+        "search_history",
+        "search_similar_cases"
+      ],
+      "forbidden_actions": ["diagnose_disease", "prescribe_medication", "guarantee_cure"],
+      "output_constraints": [
+        "must_include_disclaimer",
+        {"max_response_length": 2000},
+        "must_use_respectful_tone"
+      ]
+    },
+    "diagnostic_agent": {
+      "aliases": ["DiagnosticAgent", "diagnostic"],
+      "capabilities": [
+        "symptom_analysis",
+        "differential_diagnosis",
+        "clinical_reasoning",
+        "multi_system_analysis"
+      ],
+      "allowed_tools": [
+        "assess_risk",
+        "analyze_symptoms",
+        "disease_code",
+        "search_knowledge",
+        "clinical_guideline",
+        "search_history",
+        "search_similar_cases"
+      ],
+      "forbidden_actions": [
+        "recommend_specific_drugs",
+        "give_definitive_diagnosis",
+        "suggest_self_treatment"
+      ],
+      "output_constraints": [
+        "must_include_disclaimer",
+        "must_recommend_doctor_visit_if_high_risk",
+        "must_explain_reasoning",
+        {"max_response_length": 3000}
+      ]
+    },
+    "research_agent": {
+      "aliases": ["ResearchAgent", "research"],
+      "capabilities": [
+        "literature_search",
+        "evidence_synthesis",
+        "fact_checking",
+        "guideline_lookup",
+        "deep_research",
+        "latest_information"
+      ],
+      "allowed_tools": [
+        "clinical_guideline",
+        "deep_research",
+        "search_knowledge",
+        "search_history",
+        "search_similar_cases"
+      ],
+      "forbidden_actions": ["give_diagnosis", "recommend_treatment"],
+      "output_constraints": [
+        "must_include_disclaimer",
+        "must_cite_sources",
+        "must_distinguish_facts_from_opinions",
+        {"max_response_length": 4000}
+      ]
+    },
+    "final_answer": {
+      "aliases": ["lead_agent", "LeadAgent", "swarm", "coordinator"],
+      "capabilities": ["evidence_synthesis", "risk_communication"],
+      "allowed_tools": [],
+      "deny_all_tools": true,
+      "forbidden_actions": [
+        "give_definitive_diagnosis",
+        "prescribe_medication",
+        "guarantee_cure",
+        "delay_emergency_care"
+      ],
+      "output_constraints": [
+        "must_include_disclaimer",
+        "must_recommend_doctor_visit_if_high_risk",
+        "must_use_respectful_tone",
+        {"max_response_length": 4000}
+      ]
+    }
+  },
+  "common": {
+    "unknown_agent_policy": "deny",
+    "tool_violation_policy": "block",
+    "output_constraints": [
+      "no_medical_jargon_without_explanation",
+      "no_fear_mongering",
+      "no_false_hope",
+      "respect_patient_privacy"
+    ],
+    "safety_rules": [
+      "always_recommend_doctor_for_serious_symptoms",
+      "never_delay_emergency_care",
+      "respect_patient_privacy"
+    ],
+    "blocking_rules": [
+      "must_include_disclaimer",
+      "must_recommend_doctor_visit_if_high_risk",
+      "always_recommend_doctor_for_serious_symptoms",
+      "never_delay_emergency_care",
+      "respect_patient_privacy",
+      "diagnose_disease",
+      "give_definitive_diagnosis",
+      "give_diagnosis",
+      "prescribe_medication",
+      "recommend_specific_drugs",
+      "suggest_self_treatment",
+      "recommend_treatment",
+      "guarantee_cure",
+      "delay_emergency_care",
+      "max_response_length",
+      "must_cite_sources"
+    ]
+  },
+  "emergency_triage": {
+    "emergency_keywords": [
+      "胸痛",
+      "胸部压榨感",
+      "呼吸困难",
+      "喘不上气",
+      "心悸",
+      "昏厥",
+      "失去意识",
+      "剧烈头痛",
+      "突然视力模糊",
+      "口角歪斜",
+      "一侧肢体无力",
+      "说话不清",
+      "大量出血",
+      "呕血",
+      "咳血",
+      "严重过敏",
+      "喉咙肿胀",
+      "抽搐",
+      "中毒",
+      "服药过量",
+      "自杀",
+      "不想活"
+    ],
+    "negation_terms": ["没有", "无", "否认", "未出现", "不伴", "从未"],
+    "care_terms": ["立即就医", "尽快就医", "急诊", "拨打120", "拨打 120", "急救电话"],
+    "delay_terms": ["等一等", "观察几天", "过几天再说", "无需就医", "不用去医院", "在家观察即可"],
+    "emergency_response": "你描述的情况可能属于医疗急症。请立即拨打 120（或所在地急救电话）并前往急诊；不要独自驾车，也不要因等待在线回复而延误。若患者失去意识或呼吸异常，请让现场人员按急救调度员指示处理。\n\n【免责声明】以上为紧急分诊提示，不能替代现场医护人员评估。"
+  },
+  "privacy": {
+    "identifier_patterns": {
+      "mainland_phone": "(?<!\\d)1[3-9]\\d{9}(?!\\d)",
+      "mainland_id": "(?<!\\d)\\d{17}[0-9Xx](?!\\d)",
+      "email": "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+    }
+  }
+}
